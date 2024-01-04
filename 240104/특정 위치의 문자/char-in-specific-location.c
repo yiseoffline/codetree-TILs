@@ -11,6 +11,10 @@ int main() {
             idx=i;
         }
     }
+    if(idx==-1){
+        printf("None");
+    } else{
     printf("%d",idx);
+    }    
     return 0;
 }
