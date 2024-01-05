@@ -42,6 +42,7 @@ int main() {
             for(int k=a-1; k<b; k++){
                 printf("%d ",arr[k]);
             }
+            printf("\n");
         }
         i++;
     }
