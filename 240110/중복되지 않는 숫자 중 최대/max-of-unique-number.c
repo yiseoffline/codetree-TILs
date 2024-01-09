@@ -8,15 +8,19 @@ int main() {
     int arr[n];
     int count[1000];
     int idx;
+    int real_max=0;
     for(int i=0; i<n; i++){
         scanf("%d ",&arr[i]);
+        if(real_max<arr[i]){
+            real_max=arr[i];
+        }
     }
-    for(int i=0; i<n; i++){
+    for(int i=0; i<real_max; i++){
         idx=arr[i];
         count[idx]++;
     }
     int max=-1;
-    for(int i=0; i<n;i++){
+    for(int i=0; i<real_max;i++){
         if(count[i]==1){
             if(max<i){
                 max=i;
