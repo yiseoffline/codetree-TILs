@@ -13,7 +13,7 @@ int main() {
         }
     }
 
-    for(int i=0; i<n; i++){
+    for(int i=0; i<m; i++){
         scanf("%d %d",&r,&c);
         arr[r-1][c-1]=r*c;
     }
