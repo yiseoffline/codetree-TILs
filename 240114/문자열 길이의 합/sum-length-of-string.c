@@ -9,9 +9,10 @@ int main() {
     int res=0;
 
     for(int i=0; i<n; i++){
-        scanf("%s\n",&arr[i]);
+        scanf("%s\n",arr[i]);
         res+=strlen(arr[i]);
     }
+    
     int cnt=0;
     for(int i=0; i<n; i++){
         for(int j=0; j<strlen(arr[i]); j++){
