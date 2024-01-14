@@ -12,8 +12,8 @@ int main() {
     scanf("%c",&word);
     int cnt=0;
     for(int i=0; i<10; i++){
-        int fin=strlen(arr[i]);
-        if(arr[i][fin-1]==word){
+        //int fin=strlen(arr[i]);
+        if(arr[i][-1]==word){
             printf("%s\n",arr[i]);
             cnt++;
         }
