@@ -2,27 +2,24 @@
 #include <string.h>
 
 int main() {
-    // 여기에 코드를 작성해주세요.
     int n;
-    scanf("%d\n",&n);
-    char arr[n][100];
-    int res=0;
+    scanf("%d", &n);
 
-    for(int i=0; i<n; i++){
-        scanf("%s\n",arr[i]);
-        res+=strlen(arr[i]);
-    }
-    
-    int cnt=0;
-    for(int i=0; i<n; i++){
-        for(int j=0; j<strlen(arr[i]); j++){
-            if(arr[i][j]=='a'){
-                cnt++;
-            }
+    char arr[n][100];
+    int totalLength = 0;
+    int countA = 0;
+
+    for (int i = 0; i < n; i++) {
+        scanf("%s", arr[i]);
+        totalLength += strlen(arr[i]);
+
+        // 첫 번째 문자가 'a'인 경우 countA 증가
+        if (arr[i][0] == 'a') {
+            countA++;
         }
     }
 
-    printf("%d %d",res,cnt);
+    printf("%d %d\n", totalLength, countA);
 
     return 0;
 }
