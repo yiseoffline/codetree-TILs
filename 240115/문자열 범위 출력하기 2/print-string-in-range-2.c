@@ -13,7 +13,9 @@ int main() {
             printf("%c",arr[i]);
         }
     } else{
-        printf("%s",arr);
+        for(int i=len-1; i>=0; i--){
+            printf("%c",arr[i]);
+        }
     }
 
     return 0;
