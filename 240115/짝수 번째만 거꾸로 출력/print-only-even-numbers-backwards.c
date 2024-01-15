@@ -5,11 +5,14 @@ int main() {
     // 여기에 코드를 작성해주세요.
     char arr[100];
     scanf("%s",arr);
+    int cnt=0;
     int len = strlen(arr);
-    int i=len-1;
-    while(i>=0){
-        printf("%c",arr[i]);
-        i-=2;
+    char res[100];
+    for(int i=1; i<len; i+=2){
+        res[cnt]=arr[i];
+        cnt++;
     }
-    return 0;
+    for(int i=cnt-1; i>=0; i--){
+        printf("%c",res[i]);
+    }
 }
