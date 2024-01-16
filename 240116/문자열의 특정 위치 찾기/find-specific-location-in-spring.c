@@ -4,7 +4,7 @@
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    char arr[20];
+    char arr[21];
     char word;
     int i=0; 
     bool exists=false;
