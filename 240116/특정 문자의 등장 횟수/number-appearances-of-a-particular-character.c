@@ -7,8 +7,8 @@ int main() {
     scanf("%s",arr);
     int count_eb=0;
     int count_ee=0;
-    
-    for(int i=0; i<strlen(arr); i++){
+    int len = strlen(arr); // eeeb = 4
+    for(int i=0; i<len; i++){
         if(arr[i]=='e' && arr[i+1]=='b'){
             count_eb++;
         } 
@@ -17,7 +17,7 @@ int main() {
         }
     }
 
-    printf("%d %d",count_eb,count_ee);
+    printf("%d %d",count_ee,count_eb);
 
     return 0;
 }
