@@ -6,7 +6,7 @@ int main() {
     int x = 0, y = 0;
     int dir_num = 0;
     
-    char s[100]; // Assuming the input won't exceed 100 characters
+    char s[100000];
     scanf("%s", s);
 
     for (int i = 0; s[i] != '\0'; i++) {
