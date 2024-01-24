@@ -1,42 +1,43 @@
 #include <stdio.h>
 
-#define MAX 100
+#define MAX 101
 
-int n, m, x, y;
-int dx[4] = {0, 1, 0, -1};
-int dy[4] = {1, 0, -1, 0};
-char arr[MAX][MAX] = {0};
+int n, m;
+int arr[MAX][MAX];
 
-int InRange(int x, int y) {
-    return 0 <= x && x < n && 0 <= y && y < m;
+// 북 동 남 서
+int dx[4] = {-1, 0, 1, 0};
+int dy[4] = {0, 1, 0, -1};
+
+int inRange(int x, int y) {
+    return x >= 0 && x < n && y >= 0 && y < m;
 }
 
 int main() {
     scanf("%d %d", &n, &m);
+    arr[0][0] = 1;
 
-    arr[x][y] = 'A';
-    char alphabet = 'B';
-    int dir = 0;
-    for (int i = 1; i < n * m; i++) {
-        int nx = x + dx[dir];
-        int ny = y + dy[dir];
+    int x = 0, y = 0;
+    int dict = 2;
+    int idx = 2;
 
-        if (!InRange(nx, ny) || arr[nx][ny] != 0) {
-            dir = (dir + 1) % 4;
+    for (; idx <= n * m;) {
+        int nextX = x + dx[dict];
+        int nextY = y + dy[dict];
+
+        if (inRange(nextX, nextY) == 0 || arr[nextX][nextY] != 0) {
+            dict = (dict + 1) % 4;
+            continue;
         }
 
-        x += dx[dir];
-        y += dy[dir];
-        arr[x][y] = alphabet++;
-
-        if (alphabet > 'Z') {
-            alphabet = 'A';
-        }
+        x = nextX;
+        y = nextY;
+        arr[x][y] = idx++;
     }
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            printf("%c ", arr[i][j]);
+            printf("%d ", arr[j][i]);
         }
         printf("\n");
     }
