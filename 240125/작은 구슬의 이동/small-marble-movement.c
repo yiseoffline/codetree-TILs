@@ -1,53 +1,48 @@
 #include <stdio.h>
 
-int main() {
-    int n, t;
-    scanf("%d %d", &n, &t);
-    
-    int r, c;
-    char d;
-    scanf("%d %d %c", &r, &c, &d);
+#define ASCII_NUM 128
+#define DIR_NUM 4
 
-    // 방향에 따른 좌표 이동
-    int dr[] = {-1, 1, 0, 0};  // 상, 하, 좌, 우
-    int dc[] = {0, 0, -1, 1};
+int n, t;
+int x, y, dir;
+int mapper[128];
 
-    // 방향을 숫자로 매핑 (0: 상, 1: 하, 2: 좌, 3: 우)
-    int direction;
-    switch (d) {
-        case 'U':
-            direction = 0;
-            break;
-        case 'D':
-            direction = 1;
-            break;
-        case 'L':
-            direction = 2;
-            break;
-        case 'R':
-            direction = 3;
-            break;
-    }
+int dx[4] = {0, 1, -1, 0};
+int dy[4] = {1, 0, 0, -1};
 
-    // t초 동안 시뮬레이션 수행
-    for (int i = 0; i < t; i++) {
-        // 현재 위치에서 이동할 다음 위치 계산
-        int nr = r + dr[direction];
-        int nc = c + dc[direction];
+int InRange(int x, int y) {
+    return 0 <= x && x < n && 0 <= y && y < n;
+}
 
-        // 벽에 부딪혔을 경우 방향을 바꿔줌
-        if (nr < 1 || nr > n || nc < 1 || nc > n) {
-            direction = (direction + 1) % 4;
-            continue;  // 다음 초로 넘어감
+void Simulate() {
+    while (t--) {
+        int nx = x + dx[dir], ny = y + dy[dir];
+        // 범위 안에 들어온다면 그대로 진행합니다.
+        if (InRange(nx, ny)) {
+            x = nx, y = ny;
         }
-
-        // 다음 위치로 이동
-        r = nr;
-        c = nc;
+        // 벽에 부딪힌다면, 방향을 바꿔줍니다.
+        else
+            dir = 3 - dir;
     }
+}
 
-    // 최종 위치 출력
-    printf("%d %d\n", r, c);
+int main() {
+    // 입력
+    scanf("%d %d", &n, &t);
 
+    // 각 알파벳 별 방향 번호를 설정합니다.
+    mapper['R'] = 0;
+    mapper['D'] = 1;
+    mapper['U'] = 2;
+    mapper['L'] = 3;
+
+    char c_dir;
+    scanf("%d %d %c", &x, &y, &c_dir);
+    x--; y--; dir = mapper[c_dir];
+
+    Simulate();
+
+    printf("%d %d", x + 1, y + 1);
     return 0;
 }
