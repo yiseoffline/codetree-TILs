@@ -25,6 +25,8 @@ int main() {
     if(cal(a,b,op)==-1){
         printf("False");
     }
-    printf("%d %c %d = %d",a,op,b,cal(a,b,op));
+    else{
+        printf("%d %c %d = %d",a,op,b,cal(a,b,op));
+    }
     return 0;
 }
