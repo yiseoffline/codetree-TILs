@@ -7,10 +7,10 @@ int main() {
     int n;
     scanf("%d\n",&n);
     
-    int x1[2];
-    int x2[2];
-    int y1[2];
-    int y2[2];
+    int x1[n];
+    int x2[n];
+    int y1[n];
+    int y2[n];
 
     bool isNegative=false;
 
