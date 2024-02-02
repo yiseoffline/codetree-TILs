@@ -1,16 +1,21 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <limits.h>
 #include <stdlib.h>
 
 #define MAX_N 100
 #define MAX_M 100
 
 int n, m;
+
 int a[MAX_N][MAX_M];
 
 // bfs에 필요한 변수들입니다.
 int queue[MAX_N * MAX_M][2];
 bool visited[MAX_N][MAX_M];
+int step[MAX_N][MAX_M]; 
+
+int ans = INT_MAX;
 
 bool InRange(int x, int y) {
     return 0 <= x && x < n && 0 <= y && y < m;
@@ -20,9 +25,16 @@ bool CanGo(int x, int y) {
     return InRange(x, y) && a[x][y] && !visited[x][y];
 }
 
-void BFS() {
+void Push(int nx, int ny, int new_step) {
+    queue[new_step][0] = nx;
+    queue[new_step][1] = ny;
+    visited[nx][ny] = true;
+    step[nx][ny] = new_step;
+}
+
+void FindMin() {
     int front = 0, rear = 0;
-    
+
     while (front <= rear) {
         int x = queue[front][0], y = queue[front][1];
         front++;
@@ -33,13 +45,13 @@ void BFS() {
         for (int dir = 0; dir < 4; dir++) {
             int nx = x + dx[dir], ny = y + dy[dir];
 
-            if (CanGo(nx, ny)) {
-                queue[++rear][0] = nx;
-                queue[rear][1] = ny;
-                visited[nx][ny] = true;
-            }
+            if (CanGo(nx, ny))
+                Push(nx, ny, step[x][y] + 1);
         }
     }
+
+    if (visited[n - 1][m - 1])
+        ans = step[n - 1][m - 1];
 }
 
 int main() {
@@ -49,13 +61,13 @@ int main() {
         for (int j = 0; j < m; j++)
             scanf("%d", &a[i][j]);
 
-    queue[0][0] = 0;
-    queue[0][1] = 0;
-    visited[0][0] = true;
+    Push(0, 0, 0);
+    FindMin();
 
-    BFS();
+    if (ans == INT_MAX)
+        ans = -1;
 
-    printf("%d\n", visited[n - 1][m - 1]);
+    printf("%d\n", ans);
 
     return 0;
 }
