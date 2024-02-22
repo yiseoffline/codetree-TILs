@@ -2,7 +2,7 @@
 #include <string.h>
 
 void calculateStr(char *str){
-    int alphabet[26];
+    int alphabet[26]={0};
     for(int i=0; i<strlen(str); i++){
         int ascii = str[i]-'a';
         alphabet[ascii]++;
