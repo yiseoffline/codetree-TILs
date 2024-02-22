@@ -13,7 +13,7 @@ void calculateStr(char* str) { // str의 자료형 명시
 
     int count = 0;
     for(int i = 0; i < 26; i++) {
-        if(alphabet[i] == 1) {
+        if(alphabet[i] > 0) {
             count++;
         }
     }
